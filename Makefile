@@ -6,7 +6,7 @@ TEST_OBJECTS = ultrasonic.o servo.o motors.o main.o time.o
 FUSES      = -U hfuse:w:0xde:m -U lfuse:w:0xff:m -U efuse:w:0x05:m
 
 AVRDUDE = avrdude $(PROGRAMMER) -p $(DEVICE)
-COMPILE = avr-gcc -Wall -Os -std=gnu99 -DF_CPU=$(CLOCK) -mmcu=$(DEVICE)
+COMPILE = avr-gcc -Wall -Os -std=gnu99 -DDEBUG_SAMPLES -DF_CPU=$(CLOCK) -mmcu=$(DEVICE)
 
 # Add at the top, after initial variable definitions
 CFLAGS += -O2

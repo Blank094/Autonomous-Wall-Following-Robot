@@ -1,6 +1,6 @@
 DEVICE     = atmega328p
 CLOCK      = 16000000
-PROGRAMMER = -c arduino -b 115200 -P COM3
+PROGRAMMER = -c arduino -b 115200 -P COM12
 OBJECTS    = main.o time.o ultrasonic.o motors.o servo.o uart.o maneuvers.o
 TEST_OBJECTS = ultrasonic.o servo.o motors.o main.o time.o
 FUSES      = -U hfuse:w:0xde:m -U lfuse:w:0xff:m -U efuse:w:0x05:m

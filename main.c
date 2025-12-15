@@ -11,7 +11,6 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include "maneuvers.h"
 #include "motors.h"
 #include "ultrasonic.h"
 #include "servo.h"
@@ -26,15 +25,10 @@
 #define CM_TO_IN    2.54
 
 // Distance constraints (in inches)
-// Desired distance from wall (right side): 6 in
 #define DESIRED_DISTANCE_IN  9.0
-// Too close threshold: 3 in (robot is getting too close to wall)
-#define TOO_CLOSE_IN         5.0
-// Obstacle threshold in front: 10 in
+#define TOO_CLOSE_IN         4.0
 #define OBSTACLE_TH_IN       14.0
-// Wall lost threshold: 10 in (robot has drifted too far from wall)
 #define WALL_LOST_TH_IN      18.0
-// Acceptable tolerance around desired distance (+/- 1.5 inches)
 #define DISTANCE_TOLERANCE   2.5
 
 // SLOWER movement speed settings
@@ -91,12 +85,6 @@ static void motor_turn_left_inplace(double pct) {
     if (pct < 0.0) pct = 0.0; if (pct > 1.0) pct = 1.0;
     set_motor_speed(MOTOR_LEFT, pct, BACKWARD);
     set_motor_speed(MOTOR_RIGHT, pct, FORWARD);
-}
-
-static void motor_turn_right_inplace(double pct) {
-    if (pct < 0.0) pct = 0.0; if (pct > 1.0) pct = 1.0;
-    set_motor_speed(MOTOR_LEFT, pct, FORWARD);
-    set_motor_speed(MOTOR_RIGHT, pct, BACKWARD);
 }
 
 // Moving average filter state
@@ -219,7 +207,6 @@ int main(void) {
     double front_distance = 0.0;
     uint32_t last_front_check = 0;
     uint32_t now = 0;
-    uint8_t servo_wait = 0;
     uint8_t bad_reading_count = 0;
     char debug_buf[64];  // For debug output
 

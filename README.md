@@ -16,7 +16,6 @@ This repository contains firmware for a simple wall-following robot implemented 
 - `ultrasonic.c`, `ultrasonic.h` — ultrasonic trigger/echo logic
 - `time.c`, `time.h` — centralized millis()/micros() using Timer2
 - `uart.c`, `uart.h` — simple UART helpers
-- `maneuvers.c`, `maneuvers.h` — higher-level maneuver helpers (recover, turn, etc.)
 - `Makefile` — build and flash targets
 
 ## Wiring / Pin mapping (from source)
@@ -77,4 +76,5 @@ make flash
 
 ## Contact / Authors
 See `ABOUT.md` for a short project summary and authorship.
+
 
